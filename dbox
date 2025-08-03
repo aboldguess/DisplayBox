@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+/**
+ * Lightweight CLI to launch DisplayBox with custom settings.
+ *
+ * Usage:
+ *   ./dbox [--production] [--port <number>]
+ *
+ * --production   Runs the server in production mode by setting NODE_ENV.
+ * --port <num>   Overrides the default port for the server.
+ */
+
+const { spawn } = require('child_process'); // Used to launch the existing server
+
+// Extract command line arguments, skipping the first two default entries
+const args = process.argv.slice(2);
+let port = null; // User-specified port number
+let production = false; // Flag indicating if production mode should be used
+
+// Simple manual argument parsing to avoid external dependencies
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  if (arg === '-P' || arg === '--production') {
+    production = true; // Enable production mode when flag is present
+  } else if ((arg === '-p' || arg === '--port') && args[i + 1]) {
+    port = args[i + 1]; // Capture the provided port value
+    i++; // Skip over the port value in the next iteration
+  }
+}
+
+// Clone current environment variables and apply overrides
+const env = { ...process.env };
+if (production) env.NODE_ENV = 'production'; // Mark environment as production when requested
+if (port) env.PORT = port; // Specify custom port through environment variable
+
+// Launch the existing server with the adjusted environment
+const server = spawn(process.execPath, [require.resolve('./server.js')], {
+  env, // Pass along the environment with possible overrides
+  stdio: 'inherit' // Inherit stdio so output appears in the current terminal
+});
+
+// Ensure this script exits with the same code as the server process
+server.on('close', code => {
+  process.exit(code);
+});
