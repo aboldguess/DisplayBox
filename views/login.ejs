@@ -1,0 +1,9 @@
+<%- include('partials/navbar', {sites: sites, auth: auth, theme: theme}) %>
+<h2>Admin Login</h2>
+<form method="post">
+  <input type="password" name="password" placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
+<% if (error) { %>
+  <p style="color:red;"><%= error %></p>
+<% } %>

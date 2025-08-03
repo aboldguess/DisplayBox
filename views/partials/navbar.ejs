@@ -1,0 +1,20 @@
+<div class="navbar">
+  <% sites.forEach(function(s){ %>
+    <a href="/site/<%= s.id %>"><%= s.name %></a>
+  <% }); %>
+  <div style="margin-left:auto;">
+    <% if (auth) { %>
+      <a href="/admin">Admin</a> | <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <% } %>
+  </div>
+</div>
+<style>
+  /* Navbar styling uses theme color from config */
+  .navbar {background:<%= theme.themeColor %>; padding:5px; display:flex;}
+  .navbar a { color:white; margin-right:10px; text-decoration:none; }
+  iframe { width:100%; height:calc(100vh - 30px); border:none; }
+  table { width:100%; border-collapse: collapse; }
+  th, td { border:1px solid #ddd; padding:8px; }
+</style>

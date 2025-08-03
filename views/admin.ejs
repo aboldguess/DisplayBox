@@ -1,0 +1,31 @@
+<%- include('partials/navbar', {sites: sites, auth: auth, theme: theme}) %>
+<h2>Add New Site</h2>
+<form method="post" action="/admin/site">
+  <input name="name" placeholder="Name" />
+  <input name="description" placeholder="Description" />
+  <input name="port" placeholder="Port" />
+  <button type="submit">Add</button>
+</form>
+
+<h2>Existing Sites</h2>
+<table>
+  <tr><th>Name</th><th>Description</th><th>Port</th><th>Action</th></tr>
+  <% sites.forEach(function(s){ %>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= s.description %></td>
+      <td><%= s.port %></td>
+      <td>
+        <form method="post" action="/admin/site/<%= s.id %>/delete" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  <% }); %>
+</table>
+
+<h2>Theme</h2>
+<form method="post" action="/admin/theme">
+  <label>Navbar Color: <input name="themeColor" value="<%= theme.themeColor %>" /></label>
+  <button type="submit">Save</button>
+</form>
