@@ -1,3 +1,9 @@
+<!-- Navbar shared across pages -->
+<link rel="stylesheet" href="/styles.css"><!-- Apply global styles -->
+<style>
+  /* Expose theme color to CSS as a variable */
+  :root { --theme-color: <%= theme.themeColor %>; }
+</style>
 <div class="navbar">
   <% sites.forEach(function(s){ %>
     <a href="/site/<%= s.id %>"><%= s.name %></a>
@@ -10,11 +16,3 @@
     <% } %>
   </div>
 </div>
-<style>
-  /* Navbar styling uses theme color from config */
-  .navbar {background:<%= theme.themeColor %>; padding:5px; display:flex;}
-  .navbar a { color:white; margin-right:10px; text-decoration:none; }
-  iframe { width:100%; height:calc(100vh - 30px); border:none; }
-  table { width:100%; border-collapse: collapse; }
-  th, td { border:1px solid #ddd; padding:8px; }
-</style>
