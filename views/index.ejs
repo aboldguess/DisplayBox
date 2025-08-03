@@ -1,12 +1,14 @@
 <%- include('partials/navbar', {sites: sites, auth: auth, theme: theme}) %>
-<h1>Welcome to DisplayBox</h1>
-<table>
-  <tr><th>Name</th><th>Description</th><th>Open</th></tr>
-  <% sites.forEach(function(s){ %>
-    <tr>
-      <td><%= s.name %></td>
-      <td><%= s.description %></td>
-      <td><a href="/site/<%= s.id %>">Open</a></td>
-    </tr>
-  <% }); %>
-</table>
+<div class="content"><!-- Main landing page content -->
+  <h1>Welcome to DisplayBox</h1>
+  <table>
+    <tr><th>Name</th><th>Description</th><th>Open</th></tr>
+    <% sites.forEach(function(s){ %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.description %></td>
+        <td><a href="/site/<%= s.id %>">Open</a></td>
+      </tr>
+    <% }); %>
+  </table>
+</div>

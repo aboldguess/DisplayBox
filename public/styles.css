@@ -1,0 +1,53 @@
+/* Global stylesheet for DisplayBox */
+/* Defines layout and visual styling using the theme color variable */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+.navbar {
+  background: var(--theme-color); /* Dynamic color from configuration */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.content {
+  padding: 20px; /* Provide breathing room around content */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9; /* Zebra striping for readability */
+}
+
+iframe {
+  width: 100%;
+  height: calc(100vh - 30px); /* Fill screen below navbar */
+  border: none;
+}
+
+.error {
+  color: red; /* Highlight errors clearly */
+}
