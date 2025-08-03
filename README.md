@@ -28,6 +28,23 @@ npm start
 
 The app listens on port 3000 by default. Visit `http://yourhost:3000` to view the splash page.
 
+## Script Usage
+
+Instead of running `npm start` directly, you can launch the server through the `dbox` helper script. This wrapper exposes a couple of handy flags:
+
+```bash
+# Run on a different port
+./dbox --port 8080
+
+# Enable production mode (sets NODE_ENV=production)
+./dbox --production
+
+# Flags can be combined
+./dbox --production --port 8080
+```
+
+Omit all flags to mimic `npm start` with default settings.
+
 ## Testing
 
 No automated tests are provided yet. A placeholder script runs when invoking:
