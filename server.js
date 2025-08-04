@@ -72,7 +72,8 @@ app.get('/', (req, res) => {
   res.render('index', {
     sites,
     theme: config,
-    auth: req.session.authenticated
+    auth: req.session.authenticated,
+    currentSiteId: null // No site selected on splash page
   });
 });
 
@@ -85,12 +86,14 @@ app.get('/site/:id', (req, res) => {
     // If site not found, redirect to splash page
     return res.redirect('/');
   }
+  console.log(`Viewing site ${site.name} (${site.id})`); // Debug which site is requested
   res.render('site', {
     sites,
     site,
     host: req.hostname,
     theme: config,
-    auth: req.session.authenticated
+    auth: req.session.authenticated,
+    currentSiteId: site.id // Highlight selected site in navbar
   });
 });
 
@@ -102,7 +105,8 @@ app.get('/login', (req, res) => {
     sites,
     theme: config,
     error: null,
-    auth: req.session.authenticated
+    auth: req.session.authenticated,
+    currentSiteId: null // No site selected on login page
   });
 });
 
@@ -120,7 +124,8 @@ app.post('/login', (req, res) => {
     sites,
     theme: config,
     error: 'Invalid password',
-    auth: false
+    auth: false,
+    currentSiteId: null // No site selected on failed login
   });
 });
 
@@ -138,7 +143,8 @@ app.get('/admin', requireAuth, (req, res) => {
   res.render('admin', {
     sites,
     theme: config,
-    auth: true
+    auth: true,
+    currentSiteId: null // Admin page does not correspond to a site
   });
 });
 

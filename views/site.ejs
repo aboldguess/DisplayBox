@@ -1,2 +1,2 @@
-<%- include('partials/navbar', {sites: sites, auth: auth, theme: theme}) %>
+<%- include('partials/navbar', {sites: sites, auth: auth, theme: theme, currentSiteId: currentSiteId}) %><!-- Navbar highlights current site -->
 <iframe src="http://<%= host %>:<%= site.port %>"></iframe><!-- Display selected site -->

@@ -4,11 +4,13 @@
   /* Expose theme color to CSS as a variable */
   :root { --theme-color: <%= theme.themeColor %>; }
 </style>
-<div class="navbar">
-  <% sites.forEach(function(s){ %>
-    <a href="/site/<%= s.id %>"><%= s.name %></a>
-  <% }); %>
-  <div style="margin-left:auto;">
+<div class="navbar"><!-- Top navigation bar -->
+  <div class="nav-sites"><!-- Site links distributed evenly -->
+    <% sites.forEach(function(s){ %>
+      <a href="/site/<%= s.id %>" class="<%= currentSiteId === s.id ? 'active' : '' %>"><%= s.name %></a>
+    <% }); %>
+  </div>
+  <div class="nav-auth"><!-- Authentication links aligned to right -->
     <% if (auth) { %>
       <a href="/admin">Admin</a> | <a href="/logout">Logout</a>
     <% } else { %>
