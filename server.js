@@ -18,14 +18,20 @@ function readJSON(filePath, defaultValue) {
   try {
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    // If file does not exist or JSON invalid, return default
+    // Log any failure and fall back to the provided default
+    console.error(`Failed to read or parse ${filePath}:`, err.message);
     return defaultValue;
   }
 }
 
 // Helper function to write JSON to disk
 function writeJSON(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  } catch (err) {
+    // Report issues writing the file but allow execution to continue
+    console.error(`Failed to write ${filePath}:`, err.message);
+  }
 }
 
 // Load sites and theme configuration
