@@ -15,11 +15,29 @@ body {
   align-items: center;
 }
 
+.nav-sites {
+  flex: 1; /* Allow site links to fill available space */
+  display: flex;
+  justify-content: space-evenly; /* Evenly space site names */
+}
+
+.nav-auth {
+  margin-left: auto; /* Push auth links to the far right */
+}
+
 .navbar a {
   color: white;
   margin-right: 15px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.nav-sites a {
+  margin-right: 0; /* Remove extra spacing for even distribution */
+}
+
+.navbar a.active {
+  border-bottom: 2px solid #fff; /* Highlight active site */
 }
 
 .content {
